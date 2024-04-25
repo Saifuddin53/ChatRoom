@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "509847944415",
+    "project_id": "chat-room-de011",
+    "storage_bucket": "chat-room-de011.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:509847944415:android:3ee1d84d4cb5618bbd3d6a",
+        "android_client_info": {
+          "package_name": "com.myprojects.chatroom"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAUWhfyCADCZmuXep872L1DQ97p7V-Hj0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
