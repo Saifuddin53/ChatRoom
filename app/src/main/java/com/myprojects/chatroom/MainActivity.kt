@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import com.myprojects.chatroom.screen.LoginScreen
 import com.myprojects.chatroom.screen.SignUpScreen
 import com.myprojects.chatroom.ui.theme.ChatRoomTheme
 
@@ -19,7 +20,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    SignUpScreen()
+                    LoginScreen()
                 }
             }
         }
