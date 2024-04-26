@@ -22,7 +22,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun SignUpScreen() {
+fun SignUpScreen(
+    onNavigateToLogin: () -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize(),
@@ -87,12 +89,6 @@ fun SignUpScreen() {
         Text(text = "Already have an account? Sign in",
             fontSize = 14.sp,
             modifier = Modifier.padding(top = 8.dp)
-                .clickable { })
+                .clickable { onNavigateToLogin() })
     }
-}
-
-@Preview
-@Composable
-fun SignUpScreenPreview() {
-    SignUpScreen()
 }
