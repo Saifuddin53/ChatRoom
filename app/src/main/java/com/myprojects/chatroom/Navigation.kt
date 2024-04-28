@@ -7,15 +7,17 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.myprojects.chatroom.screen.LoginScreen
 import com.myprojects.chatroom.screen.SignUpScreen
+import com.myprojects.chatroom.viewmodel.AuthViewModel
 
 @Composable
 fun Navigation(
     navController: NavHostController,
+    authViewModel: AuthViewModel
 ) {
     NavHost(navController = navController,
         startDestination = Screen.SignupScreen.route) {
         composable(route = Screen.SignupScreen.route) {
-            SignUpScreen{
+            SignUpScreen(authViewModel) {
                 navController.navigate(route = Screen.LoginScreen.route)
             }
         }

@@ -20,9 +20,11 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.myprojects.chatroom.viewmodel.AuthViewModel
 
 @Composable
 fun SignUpScreen(
+    authViewModel: AuthViewModel,
     onNavigateToLogin: () -> Unit
 ) {
     Column(
@@ -79,7 +81,13 @@ fun SignUpScreen(
                 .padding(bottom = 8.dp, start = 24.dp, end = 24.dp)
                 .fillMaxWidth())
 
-        Button(onClick = { /*TODO*/ },
+        Button(onClick = {
+            authViewModel.signUp(email, password, firstName, lastName)
+            email = ""
+            password = ""
+            firstName = ""
+            lastName = ""
+        },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 24.dp, vertical = 16.dp)) {

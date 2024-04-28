@@ -7,10 +7,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
-import com.myprojects.chatroom.screen.LoginScreen
-import com.myprojects.chatroom.screen.SignUpScreen
 import com.myprojects.chatroom.ui.theme.ChatRoomTheme
+import com.myprojects.chatroom.viewmodel.AuthViewModel
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +23,8 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val navController = rememberNavController()
-                    Navigation(navController)
+                    val authViewModel: AuthViewModel = viewModel()
+                    Navigation(navController, authViewModel)
                 }
             }
         }
