@@ -22,7 +22,10 @@ fun Navigation(
             }
         }
         composable(route = Screen.LoginScreen.route) {
-            LoginScreen {
+            LoginScreen(
+                authViewModel,
+                { navController.navigate(Screen.ChatRoomScreen.route) }
+            ) {
                 navController.navigate(route = Screen.SignupScreen.route)
             }
         }

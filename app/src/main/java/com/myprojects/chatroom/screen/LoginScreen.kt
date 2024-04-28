@@ -19,9 +19,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.myprojects.chatroom.data.Result
+import com.myprojects.chatroom.viewmodel.AuthViewModel
+import java.lang.Error
 
 @Composable
 fun LoginScreen(
+    authViewModel: AuthViewModel,
+    onSignInSuccess: () -> Unit,
     onNavigateToSignUp: () -> Unit
 ) {
     Column(
@@ -56,7 +61,20 @@ fun LoginScreen(
                 .padding(bottom = 8.dp, start = 24.dp, end = 24.dp)
                 .fillMaxWidth())
 
-        Button(onClick = { /*TODO*/ },
+        Button(onClick = {
+            authViewModel.login(email, password)
+            email = ""
+            password = ""
+            when(authViewModel.authResult.value) {
+                is Result.Success -> {
+                    onSignInSuccess()
+                }
+
+                else -> {
+
+                }
+            }
+        },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 24.dp, vertical = 16.dp)) {
