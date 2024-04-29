@@ -1,6 +1,6 @@
 package com.myprojects.chatroom.data
 
 data class Room(
-    val id: Int,
-    val name: String
+    val id: String = "",
+    val name: String = ""
 )
