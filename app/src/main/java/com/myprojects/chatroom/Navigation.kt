@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.myprojects.chatroom.screen.ChatRoomListScreen
+import com.myprojects.chatroom.screen.ChatScreen
 import com.myprojects.chatroom.screen.LoginScreen
 import com.myprojects.chatroom.screen.SignUpScreen
 import com.myprojects.chatroom.viewmodel.AuthViewModel
@@ -31,7 +32,12 @@ fun Navigation(
             }
         }
         composable(route = Screen.ChatRoomScreen.route) {
-            ChatRoomListScreen()
+            ChatRoomListScreen {
+                navController.navigate(route = Screen.SignupScreen.route)
+            }
+        }
+        composable(route = Screen.ChatScreen.route) {
+            ChatScreen()
         }
     }
 }

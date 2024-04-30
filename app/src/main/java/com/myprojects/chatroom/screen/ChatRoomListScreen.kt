@@ -29,7 +29,8 @@ import com.myprojects.chatroom.viewmodel.RoomViewModel
 
 @Composable
 fun ChatRoomListScreen(
-    roomViewModel: RoomViewModel = viewModel()
+    roomViewModel: RoomViewModel = viewModel(),
+    onItemClick: () -> Unit
 ) {
 
     var showDialog: Boolean by remember { mutableStateOf(false) }

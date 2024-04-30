@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
 import com.myprojects.chatroom.screen.ChatRoomListScreen
+import com.myprojects.chatroom.screen.ChatScreen
 import com.myprojects.chatroom.ui.theme.ChatRoomTheme
 import com.myprojects.chatroom.viewmodel.AuthViewModel
 
@@ -25,7 +26,8 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val navController = rememberNavController()
                     val authViewModel: AuthViewModel = viewModel()
-                    Navigation(navController, authViewModel)
+//                    Navigation(navController, authViewModel)
+                    ChatScreen()
                 }
             }
         }
