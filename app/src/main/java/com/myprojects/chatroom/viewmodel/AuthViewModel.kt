@@ -1,5 +1,6 @@
 package com.myprojects.chatroom.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -20,7 +21,7 @@ class AuthViewModel: ViewModel() {
     }
 
     private val _authResult = MutableLiveData<Result<Boolean>>()
-    val authResult get() = _authResult
+    val authResult: LiveData<Result<Boolean>> get() = _authResult
 
     fun signUp(email: String, password: String, firstName: String, lastName: String) {
         viewModelScope.launch {

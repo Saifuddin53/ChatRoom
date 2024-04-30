@@ -27,7 +27,7 @@ class UserRepository(
         firestore.collection("users").document(user.email).set(user).await()
     }
 
-    suspend fun login(email: String, password: String) =
+    suspend fun login(email: String, password: String): Result<Boolean> =
         try {
             auth.signInWithEmailAndPassword(email, password).await()
             Result.Success(true)

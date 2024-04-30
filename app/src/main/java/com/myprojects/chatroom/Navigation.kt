@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.myprojects.chatroom.screen.ChatRoomListScreen
 import com.myprojects.chatroom.screen.LoginScreen
 import com.myprojects.chatroom.screen.SignUpScreen
 import com.myprojects.chatroom.viewmodel.AuthViewModel
@@ -23,11 +24,14 @@ fun Navigation(
         }
         composable(route = Screen.LoginScreen.route) {
             LoginScreen(
-                authViewModel,
-                { navController.navigate(Screen.ChatRoomScreen.route) }
+                authViewModel = authViewModel,
+                onSignInSuccess = { navController.navigate(Screen.ChatRoomScreen.route) }
             ) {
                 navController.navigate(route = Screen.SignupScreen.route)
             }
+        }
+        composable(route = Screen.ChatRoomScreen.route) {
+            ChatRoomListScreen()
         }
     }
 }

@@ -10,31 +10,32 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.myprojects.chatroom.data.Room
+import com.myprojects.chatroom.viewmodel.RoomViewModel
 
 @Composable
-fun ChatRoomListScreen() {
+fun ChatRoomListScreen(
+    roomViewModel: RoomViewModel = viewModel()
+) {
 
     var showDialog: Boolean by remember { mutableStateOf(false) }
     var name by remember { mutableStateOf("") }
-    val tempList = listOf<Room>(Room(1, "room1"),
-        Room(2, "room2"))
+    val rooms by roomViewModel.rooms.observeAsState(emptyList())
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -45,7 +46,7 @@ fun ChatRoomListScreen() {
             fontWeight = FontWeight.ExtraBold
         )
         LazyColumn {
-            items(tempList) {
+            items(rooms) {
                 RoomItem(room = it)
             }
         }
@@ -80,7 +81,8 @@ fun ChatRoomListScreen() {
                             onClick = {
                                 if (name.isNotBlank()) {
                                     showDialog = false
-
+                                    roomViewModel.createRoom(name)
+                                    name = ""
                                 }
                             }
                         ) {
