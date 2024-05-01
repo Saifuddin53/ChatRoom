@@ -1,5 +1,7 @@
 package com.myprojects.chatroom
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavHostController
@@ -11,6 +13,7 @@ import com.myprojects.chatroom.screen.LoginScreen
 import com.myprojects.chatroom.screen.SignUpScreen
 import com.myprojects.chatroom.viewmodel.AuthViewModel
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun Navigation(
     navController: NavHostController,
@@ -33,11 +36,13 @@ fun Navigation(
         }
         composable(route = Screen.ChatRoomScreen.route) {
             ChatRoomListScreen {
-                navController.navigate(route = Screen.SignupScreen.route)
+                navController.navigate("${Screen.ChatScreen.route}/${it.id}")
             }
         }
-        composable(route = Screen.ChatScreen.route) {
-            ChatScreen()
+        composable("${Screen.ChatScreen.route}/{roomId}") {
+            val roomId: String = it
+                .arguments?.getString("roomId") ?: ""
+            ChatScreen(roomId = roomId)
         }
     }
 }

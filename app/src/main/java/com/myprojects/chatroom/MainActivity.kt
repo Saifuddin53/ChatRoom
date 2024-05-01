@@ -26,8 +26,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val navController = rememberNavController()
                     val authViewModel: AuthViewModel = viewModel()
-//                    Navigation(navController, authViewModel)
-                    ChatScreen()
+                    Navigation(navController, authViewModel)
                 }
             }
         }

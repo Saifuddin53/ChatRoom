@@ -1,12 +1,9 @@
 package com.myprojects.chatroom.data
 
-import android.content.Context
-import android.widget.Toast
-import androidx.compose.ui.platform.LocalContext
+import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
-import com.myprojects.chatroom.data.Result.Error
-import com.myprojects.chatroom.viewmodel.AuthViewModel
 import kotlinx.coroutines.tasks.await
 
 class UserRepository(
@@ -34,4 +31,22 @@ class UserRepository(
         }catch (e: Exception) {
             Result.Error<Exception>(e)
         }
+
+    suspend fun getCurrentUser(): Result<User> = try {
+        val uid = auth.currentUser?.email
+        if (uid != null) {
+            val userDocument = firestore.collection("users").document(uid).get().await()
+            val user = userDocument.toObject(User::class.java)
+            if (user != null) {
+                Log.d("user2","$uid")
+                Result.Success(user)
+            } else {
+                Result.Error<Exception>(Exception("User data not found"))
+            }
+        } else {
+            Result.Error<Exception>(Exception("User not authenticated"))
+        }
+    } catch (e: Exception) {
+        Result.Error<Exception>(e)
+    }
 }
