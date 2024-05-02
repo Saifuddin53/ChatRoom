@@ -30,7 +30,7 @@ import com.myprojects.chatroom.viewmodel.RoomViewModel
 @Composable
 fun ChatRoomListScreen(
     roomViewModel: RoomViewModel = viewModel(),
-    onItemClick: (Room) -> Unit
+    onJoinClick: (Room) -> Unit
 ) {
 
     var showDialog: Boolean by remember { mutableStateOf(false) }
@@ -48,7 +48,7 @@ fun ChatRoomListScreen(
         )
         LazyColumn {
             items(rooms) {
-                RoomItem(room = it, onItemClick = {onItemClick(it)})
+                RoomItem(room = it, onItemClick = {onJoinClick(it)})
             }
         }
         Button(onClick = {

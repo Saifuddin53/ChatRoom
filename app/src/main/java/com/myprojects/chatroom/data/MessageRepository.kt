@@ -18,18 +18,19 @@ class MessageRepository(
             Result.Error<Exception>(e)
         }
 
-    suspend fun getChatMessages(roomId: String): Flow<List<Message>> =
-        callbackFlow {
-            val subscription = firestore.collection("rooms").document(roomId)
-                .collection("messages")
-                .orderBy("timeStamp")
-                .addSnapshotListener { querySnapshot, _ ->
-                    querySnapshot?.let {
-                        trySend(it.documents.map { doc ->
-                            doc.toObject(Message::class.java)!!.copy()
-                        }).isSuccess
-                    }
+    fun getChatMessages(roomId: String): Flow<List<Message>> = callbackFlow {
+        val subscription = firestore.collection("rooms").document(roomId)
+            .collection("messages")
+            .orderBy("timestamp")
+            .addSnapshotListener { querySnapshot, _ ->
+                querySnapshot?.let {
+                    trySend(it.documents.map { doc ->
+                        doc.toObject(Message::class.java)!!.copy()
+                    }).isSuccess
                 }
-            awaitClose { subscription.remove() }
-        }
+            }
+
+        awaitClose { subscription.remove() }
+    }
+
 }

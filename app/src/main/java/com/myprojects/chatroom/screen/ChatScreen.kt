@@ -48,9 +48,9 @@ fun ChatScreen(
         LazyColumn(
             modifier = Modifier.weight(1f)
         ) {
-            items(messages) {
-                ChatMessageItem(message = it.copy(isSentByCurrentUser
-                = it.senderId == messageViewModel.currentUser.value?.email))
+            items(messages) {message ->
+                ChatMessageItem(message = message.copy(isSentByCurrentUser
+                = message.senderId == messageViewModel.currentUser.value?.email))
             }
         }
         Row(
@@ -64,7 +64,7 @@ fun ChatScreen(
                     .padding(16.dp)
                     .weight(1f))
 
-            IconButton(onClick = { 
+            IconButton(onClick = {
                 if(text.value.isNotEmpty()) {
                     messageViewModel.sendMessage(text.value.trim())
                     text.value = ""
