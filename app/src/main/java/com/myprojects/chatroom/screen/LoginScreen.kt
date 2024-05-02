@@ -23,7 +23,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.myprojects.chatroom.data.Result
 import com.myprojects.chatroom.viewmodel.AuthViewModel
-import java.lang.Error
 
 @Composable
 fun LoginScreen(
@@ -45,7 +44,7 @@ fun LoginScreen(
             mutableStateOf("")
         }
 
-        val result by authViewModel.authResult.observeAsState(initial = Result.Success<Boolean>(false))
+        val result by authViewModel.authResult.observeAsState(initial = Result.Success(false))
 
         OutlinedTextField(value = email,
             onValueChange = {email = it},

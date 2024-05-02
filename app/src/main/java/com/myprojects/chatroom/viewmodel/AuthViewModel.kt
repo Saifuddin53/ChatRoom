@@ -11,7 +11,7 @@ import com.myprojects.chatroom.data.UserRepository
 import kotlinx.coroutines.launch
 
 class AuthViewModel: ViewModel() {
-    val authInstance = FirebaseAuth.getInstance()
+    private val authInstance = FirebaseAuth.getInstance()
     private val userRepository: UserRepository
     init {
         userRepository = UserRepository(

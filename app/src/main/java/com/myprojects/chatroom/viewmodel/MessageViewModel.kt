@@ -38,9 +38,6 @@ class MessageViewModel: ViewModel() {
         viewModelScope.launch {
             when(val result = userRepository.getCurrentUser()) {
                 is Result.Success -> _currentUser.value = result.data
-                is Error -> {
-                    // Handle error, e.g., show a snackbar
-                }
 
                 else -> {}
             }
@@ -66,9 +63,7 @@ class MessageViewModel: ViewModel() {
             viewModelScope.launch {
                 when (messageRepository.sendMessage(_roomId.value.toString(), message)) {
                     is Result.Success -> Unit
-                    is Error -> {
 
-                    }
 
                     else -> {}
                 }
